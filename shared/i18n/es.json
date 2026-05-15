@@ -1,0 +1,55 @@
+{
+  "appName": "Raíces",
+  "postTypes": {
+    "give": "Ofrecer",
+    "need": "Necesitar",
+    "lend": "Prestar",
+    "event": "Evento",
+    "test": "Prueba"
+  },
+  "categories": {
+    "kids": "Niños y bebé",
+    "home": "Hogar",
+    "tools": "Herramientas",
+    "food": "Alimentación y huerto",
+    "books": "Libros",
+    "clothes": "Ropa",
+    "furniture": "Muebles",
+    "appliances": "Electrodomésticos",
+    "other": "Otros"
+  },
+  "createPost": {
+    "title": "Comparto / Presto / Necesito / Dono / Evento",
+    "fieldType": "Tipo",
+    "fieldTitle": "Título",
+    "fieldDescription": "Descripción",
+    "fieldCategory": "Categoría",
+    "fieldLocations": "Ubicaciones",
+    "placeholderTitle": "¿Qué ofreces o necesitas?",
+    "placeholderDescription": "Describe brevemente...",
+    "submit": "Publicar",
+    "cancel": "Cancelar",
+    "selectType": "Selecciona un tipo",
+    "selectCategory": "Selecciona una categoría"
+  },
+  "postDetail": {
+    "createdAt": "Publicado el",
+    "locations": "Ubicaciones",
+    "close": "Cerrar"
+  },
+  "map": {
+    "loading": "Cargando mapa...",
+    "locationError": "No se pudo obtener tu ubicación",
+    "noPosts": "No hay anuncios todavía. ¡Crea el primero!"
+  },
+  "errors": {
+    "requiredTitle": "El título es obligatorio",
+    "requiredType": "Selecciona un tipo",
+    "requiredCategory": "Selecciona una categoría",
+    "requiredLocation": "Selecciona al menos una ubicación",
+    "titleTooLong": "El título no puede superar los 200 caracteres",
+    "descriptionTooLong": "La descripción no puede superar los 1000 caracteres",
+    "createFailed": "Error al crear el anuncio",
+    "loadFailed": "Error al cargar los anuncios"
+  }
+}

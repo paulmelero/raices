@@ -1,0 +1,18 @@
+name = "raices"
+compatibility_date = "2025-01-10"
+compatibility_flags = [ "nodejs_compat" ]
+
+main = ".output/server/index.mjs"
+
+assets = { directory = ".output/public", binding = "ASSETS" }
+
+[build]
+command = "pnpm build"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "raices-db"
+database_id = "<to-be-filled>"
+
+[observability]
+enabled = true
