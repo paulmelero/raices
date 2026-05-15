@@ -11,8 +11,8 @@ command = "pnpm build"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "raices-db"
-database_id = "<to-be-filled>"
+database_name = "raices_db"
+database_id = "63800bab-e51a-4c0b-811a-7ee8f72d2b9f"
 
 [observability]
 enabled = true
