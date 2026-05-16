@@ -1,6 +1,7 @@
 name = "raices"
 compatibility_date = "2025-01-10"
 compatibility_flags = [ "nodejs_compat" ]
+account_id = "81bb9e915adce027f7f72b700da03532"
 
 main = ".output/server/index.mjs"
 
