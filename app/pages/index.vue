@@ -33,7 +33,7 @@ function handleSelectPost(post: Post) {
 </script>
 
 <template>
-  <div class="h-dvh w-full flex flex-col">
+  <div class="h-dvh w-full flex flex-col relative">
     <header
       class="shrink-0 bg-surface-raised border-b border-border-subtle px-4 py-3 flex items-center justify-between z-20"
     >

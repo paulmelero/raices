@@ -1,39 +1,41 @@
 <script setup lang="ts">
-import { POST_TYPES, CATEGORIES } from '~~/shared/types'
-import type { PostType, Category, CreatePostBody } from '~~/shared/types'
-import { TOWNS } from '~~/shared/towns'
-import es from '~~/shared/i18n/es.json'
+import { POST_TYPES, CATEGORIES } from '~~/shared/types';
+import type { PostType, Category, CreatePostBody } from '~~/shared/types';
+import { TOWNS } from '~~/shared/towns';
+import es from '~~/shared/i18n/es.json';
 
 const emit = defineEmits<{
-  close: []
-  created: [body: CreatePostBody]
-}>()
+  close: [];
+  created: [body: CreatePostBody];
+}>();
 
-const type = ref<PostType | ''>('')
-const title = ref('')
-const description = ref('')
-const category = ref<Category | ''>('')
-const selectedTownIds = ref<string[]>([])
-const errors = ref<Record<string, string>>({})
-const submitting = ref(false)
+const type = ref<PostType | ''>('');
+const title = ref('');
+const description = ref('');
+const category = ref<Category | ''>('');
+const selectedTownIds = ref<string[]>([]);
+const errors = ref<Record<string, string>>({});
+const submitting = ref(false);
 
 function validate(): boolean {
-  const e: Record<string, string> = {}
-  if (!type.value) e.type = es.errors.requiredType
-  if (!title.value.trim()) e.title = es.errors.requiredTitle
-  if (title.value.length > 200) e.title = es.errors.titleTooLong
-  if (description.value.length > 1000) e.description = es.errors.descriptionTooLong
-  if (!category.value) e.category = es.errors.requiredCategory
-  if (selectedTownIds.value.length === 0) e.locations = es.errors.requiredLocation
-  errors.value = e
-  return Object.keys(e).length === 0
+  const e: Record<string, string> = {};
+  if (!type.value) e.type = es.errors.requiredType;
+  if (!title.value.trim()) e.title = es.errors.requiredTitle;
+  if (title.value.length > 200) e.title = es.errors.titleTooLong;
+  if (description.value.length > 1000)
+    e.description = es.errors.descriptionTooLong;
+  if (!category.value) e.category = es.errors.requiredCategory;
+  if (selectedTownIds.value.length === 0)
+    e.locations = es.errors.requiredLocation;
+  errors.value = e;
+  return Object.keys(e).length === 0;
 }
 
 async function submit() {
-  if (!validate()) return
-  submitting.value = true
+  if (!validate()) return;
+  submitting.value = true;
 
-  const locations = TOWNS.filter((t) => selectedTownIds.value.includes(t.id))
+  const locations = TOWNS.filter((t) => selectedTownIds.value.includes(t.id));
 
   emit('created', {
     type: type.value as PostType,
@@ -41,15 +43,19 @@ async function submit() {
     description: description.value.trim() || undefined,
     category: category.value as Category,
     locations,
-  })
+  });
 }
 </script>
 
 <template>
   <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
     <div class="absolute inset-0 bg-black/40" @click="emit('close')" />
-    <div class="relative bg-surface-raised w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[90vh] flex flex-col shadow-xl">
-      <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-border-subtle shrink-0">
+    <div
+      class="relative bg-surface-raised w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[90svh] flex flex-col shadow-xl"
+    >
+      <div
+        class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-border-subtle shrink-0"
+      >
         <h2 class="text-xl font-bold text-content">
           {{ es.createPost.title }}
         </h2>
@@ -61,10 +67,16 @@ async function submit() {
         </button>
       </div>
 
-      <form class="space-y-5 overflow-y-auto px-6 py-5" @submit.prevent="submit">
+      <form
+        class="space-y-5 overflow-y-auto px-6 py-5"
+        @submit.prevent="submit"
+      >
         <!-- Type -->
         <div>
-          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldType }}</label>
+          <label
+            class="block text-sm font-medium text-content-secondary mb-1.5"
+            >{{ es.createPost.fieldType }}</label
+          >
           <select
             v-model="type"
             class="w-full border border-border rounded-lg px-3 py-2.5 text-content bg-surface focus:ring-2 focus:ring-ring focus:border-transparent"
@@ -83,14 +95,17 @@ async function submit() {
 
         <!-- Title -->
         <div>
-          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldTitle }}</label>
+          <label
+            class="block text-sm font-medium text-content-secondary mb-1.5"
+            >{{ es.createPost.fieldTitle }}</label
+          >
           <input
             v-model="title"
             type="text"
             maxlength="200"
             :placeholder="es.createPost.placeholderTitle"
             class="w-full border border-border rounded-lg px-3 py-2.5 text-content bg-surface focus:ring-2 focus:ring-ring focus:border-transparent"
-          >
+          />
           <p v-if="errors.title" class="text-danger text-sm mt-1">
             {{ errors.title }}
           </p>
@@ -98,7 +113,10 @@ async function submit() {
 
         <!-- Description -->
         <div>
-          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldDescription }}</label>
+          <label
+            class="block text-sm font-medium text-content-secondary mb-1.5"
+            >{{ es.createPost.fieldDescription }}</label
+          >
           <textarea
             v-model="description"
             maxlength="1000"
@@ -113,7 +131,10 @@ async function submit() {
 
         <!-- Category -->
         <div>
-          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldCategory }}</label>
+          <label
+            class="block text-sm font-medium text-content-secondary mb-1.5"
+            >{{ es.createPost.fieldCategory }}</label
+          >
           <select
             v-model="category"
             class="w-full border border-border rounded-lg px-3 py-2.5 text-content bg-surface focus:ring-2 focus:ring-ring focus:border-transparent"
@@ -132,8 +153,13 @@ async function submit() {
 
         <!-- Locations -->
         <div>
-          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldLocations }}</label>
-          <div class="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto border border-border rounded-lg p-2">
+          <label
+            class="block text-sm font-medium text-content-secondary mb-1.5"
+            >{{ es.createPost.fieldLocations }}</label
+          >
+          <div
+            class="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto border border-border rounded-lg p-2"
+          >
             <label
               v-for="town in TOWNS"
               :key="town.id"
@@ -144,7 +170,7 @@ async function submit() {
                 type="checkbox"
                 :value="town.id"
                 class="rounded border-border text-primary focus:ring-ring size-4 shrink-0"
-              >
+              />
               {{ town.name }}
             </label>
           </div>
