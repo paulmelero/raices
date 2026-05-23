@@ -35,12 +35,12 @@ function handleSelectPost(post: Post) {
 <template>
   <div class="h-dvh w-full flex flex-col">
     <header
-      class="shrink-0 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between z-20"
+      class="shrink-0 bg-surface-raised border-b border-border-subtle px-4 py-3 flex items-center justify-between z-20"
     >
-      <h1 class="text-lg font-bold text-gray-900">
+      <h1 class="text-lg font-bold text-content">
         {{ es.appName }}
       </h1>
-      <span class="text-xs text-gray-400">Huesca</span>
+      <span class="text-xs text-content-muted">Huesca</span>
     </header>
 
     <div class="relative flex-1 overflow-hidden">
@@ -69,7 +69,7 @@ function handleSelectPost(post: Post) {
 
     <div
       v-if="createError"
-      class="fixed top-4 left-4 right-4 z-50 bg-red-500 text-white text-sm px-4 py-3 rounded-lg shadow-lg text-center"
+      class="fixed top-4 left-4 right-4 z-50 bg-danger text-white text-sm px-4 py-3 rounded-lg shadow-lg text-center"
     >
       {{ createError }}
     </div>

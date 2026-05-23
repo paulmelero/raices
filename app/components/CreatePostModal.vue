@@ -48,13 +48,13 @@ async function submit() {
 <template>
   <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
     <div class="absolute inset-0 bg-black/40" @click="emit('close')" />
-    <div class="relative bg-white w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[90vh] flex flex-col shadow-xl">
-      <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100 shrink-0">
-        <h2 class="text-xl font-bold text-gray-900">
+    <div class="relative bg-surface-raised w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[90vh] flex flex-col shadow-xl">
+      <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-border-subtle shrink-0">
+        <h2 class="text-xl font-bold text-content">
           {{ es.createPost.title }}
         </h2>
         <button
-          class="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+          class="text-content-muted hover:text-content-secondary text-2xl leading-none"
           @click="emit('close')"
         >
           &times;
@@ -64,10 +64,10 @@ async function submit() {
       <form class="space-y-5 overflow-y-auto px-6 py-5" @submit.prevent="submit">
         <!-- Type -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ es.createPost.fieldType }}</label>
+          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldType }}</label>
           <select
             v-model="type"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-900 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            class="w-full border border-border rounded-lg px-3 py-2.5 text-content bg-surface focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             <option value="" disabled>
               {{ es.createPost.selectType }}
@@ -76,47 +76,47 @@ async function submit() {
               {{ es.postTypes[t] }}
             </option>
           </select>
-          <p v-if="errors.type" class="text-red-500 text-sm mt-1">
+          <p v-if="errors.type" class="text-danger text-sm mt-1">
             {{ errors.type }}
           </p>
         </div>
 
         <!-- Title -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ es.createPost.fieldTitle }}</label>
+          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldTitle }}</label>
           <input
             v-model="title"
             type="text"
             maxlength="200"
             :placeholder="es.createPost.placeholderTitle"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-900 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            class="w-full border border-border rounded-lg px-3 py-2.5 text-content bg-surface focus:ring-2 focus:ring-ring focus:border-transparent"
           >
-          <p v-if="errors.title" class="text-red-500 text-sm mt-1">
+          <p v-if="errors.title" class="text-danger text-sm mt-1">
             {{ errors.title }}
           </p>
         </div>
 
         <!-- Description -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ es.createPost.fieldDescription }}</label>
+          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldDescription }}</label>
           <textarea
             v-model="description"
             maxlength="1000"
             rows="3"
             :placeholder="es.createPost.placeholderDescription"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-900 focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+            class="w-full border border-border rounded-lg px-3 py-2.5 text-content bg-surface focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
           />
-          <p v-if="errors.description" class="text-red-500 text-sm mt-1">
+          <p v-if="errors.description" class="text-danger text-sm mt-1">
             {{ errors.description }}
           </p>
         </div>
 
         <!-- Category -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ es.createPost.fieldCategory }}</label>
+          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldCategory }}</label>
           <select
             v-model="category"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-900 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            class="w-full border border-border rounded-lg px-3 py-2.5 text-content bg-surface focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             <option value="" disabled>
               {{ es.createPost.selectCategory }}
@@ -125,30 +125,30 @@ async function submit() {
               {{ es.categories[c] }}
             </option>
           </select>
-          <p v-if="errors.category" class="text-red-500 text-sm mt-1">
+          <p v-if="errors.category" class="text-danger text-sm mt-1">
             {{ errors.category }}
           </p>
         </div>
 
         <!-- Locations -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ es.createPost.fieldLocations }}</label>
-          <div class="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto border border-gray-200 rounded-lg p-2">
+          <label class="block text-sm font-medium text-content-secondary mb-1.5">{{ es.createPost.fieldLocations }}</label>
+          <div class="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto border border-border rounded-lg p-2">
             <label
               v-for="town in TOWNS"
               :key="town.id"
-              class="flex items-center gap-2.5 text-sm text-gray-700 cursor-pointer rounded-md px-2 py-2 hover:bg-gray-50 active:bg-gray-100"
+              class="flex items-center gap-2.5 text-sm text-content-secondary cursor-pointer rounded-md px-2 py-2 hover:bg-surface-alt active:bg-surface-alt/80"
             >
               <input
                 v-model="selectedTownIds"
                 type="checkbox"
                 :value="town.id"
-                class="rounded border-gray-300 text-green-600 focus:ring-green-500 size-4 shrink-0"
+                class="rounded border-border text-primary focus:ring-ring size-4 shrink-0"
               >
               {{ town.name }}
             </label>
           </div>
-          <p v-if="errors.locations" class="text-red-500 text-sm mt-1">
+          <p v-if="errors.locations" class="text-danger text-sm mt-1">
             {{ errors.locations }}
           </p>
         </div>
@@ -157,7 +157,7 @@ async function submit() {
         <div class="flex gap-3 pt-2">
           <button
             type="button"
-            class="flex-1 py-2.5 px-4 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50"
+            class="flex-1 py-2.5 px-4 border border-border rounded-lg text-content-secondary font-medium hover:bg-surface-alt"
             @click="emit('close')"
           >
             {{ es.createPost.cancel }}
@@ -165,7 +165,7 @@ async function submit() {
           <button
             type="submit"
             :disabled="submitting"
-            class="flex-1 py-2.5 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50"
+            class="flex-1 py-2.5 px-4 bg-primary text-white rounded-lg font-medium hover:bg-primary-hover disabled:opacity-50"
           >
             {{ submitting ? '...' : es.createPost.submit }}
           </button>

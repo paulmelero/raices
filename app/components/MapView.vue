@@ -17,13 +17,18 @@ let map: InstanceType<typeof import('maplibre-gl').Map> | null = null;
 let mgl: typeof import('maplibre-gl') | null = null;
 const markers: InstanceType<typeof import('maplibre-gl').Marker>[] = [];
 
-const TYPE_COLORS: Record<PostType, string> = {
-  give: '#22c55e',
-  need: '#f97316',
-  lend: '#3b82f6',
-  event: '#a855f7',
-  test: '#6b7280',
-};
+function getTypeColor(type: PostType): string {
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue(`--color-marker-${type}`)
+    .trim();
+  return raw || '#9C9083';
+}
+
+function getHuescaBorderColor(): string {
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue('--color-huesca-border')
+    .trim() || '#A0522D';
+}
 
 function clearMarkers() {
   for (const marker of markers) {
@@ -44,10 +49,9 @@ function renderMarkers() {
     el.style.width = '28px';
     el.style.height = '28px';
     el.style.borderRadius = '50%';
-    el.style.backgroundColor = TYPE_COLORS[post.type] ?? '#6b7280';
-    el.style.border = '3px solid white';
-    el.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+    el.style.backgroundColor = getTypeColor(post.type);
     el.style.cursor = 'pointer';
+    el.className = 'map-marker-ring';
 
     const marker = new mgl.Marker({ element: el })
       .setLngLat([loc.lng, loc.lat])
@@ -64,7 +68,6 @@ function renderMarkers() {
 function addHuescaHighlight() {
   if (!map) return;
 
-  // World polygon with Huesca cut out → dims everything outside the province
   map.addSource('huesca-mask', {
     type: 'geojson',
     data: {
@@ -96,7 +99,6 @@ function addHuescaHighlight() {
     },
   });
 
-  // Province border line
   map.addSource('huesca-border', {
     type: 'geojson',
     data: {
@@ -114,7 +116,7 @@ function addHuescaHighlight() {
     type: 'line',
     source: 'huesca-border',
     paint: {
-      'line-color': '#f97316',
+      'line-color': getHuescaBorderColor(),
       'line-width': 2,
       'line-opacity': 0.5,
     },
@@ -131,6 +133,15 @@ watch(
     }
   },
 );
+
+let darkQuery: MediaQueryList | null = null;
+
+function onSchemeChange() {
+  renderMarkers();
+  if (map?.getLayer('huesca-border')) {
+    map.setPaintProperty('huesca-border', 'line-color', getHuescaBorderColor());
+  }
+}
 
 onMounted(async () => {
   if (!mapContainer.value) return;
@@ -169,9 +180,13 @@ onMounted(async () => {
     addHuescaHighlight();
     renderMarkers();
   });
+
+  darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  darkQuery.addEventListener('change', onSchemeChange);
 });
 
 onUnmounted(() => {
+  darkQuery?.removeEventListener('change', onSchemeChange);
   clearMarkers();
   map?.remove();
   map = null;

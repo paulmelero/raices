@@ -21,5 +21,5 @@ export const TOWNS: Town[] = [
   { id: 'biescas', name: 'Biescas', lat: 42.6286, lng: -0.3208 },
 ]
 
-export const DEFAULT_CENTER = { lat: 42.1401, lng: -0.4089 }
+export const DEFAULT_CENTER = { lat: 42.326732, lng: 0.102822 }
 export const DEFAULT_ZOOM = 9

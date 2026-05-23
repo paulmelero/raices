@@ -1,0 +1,150 @@
+:root {
+  --color-surface: 252 248 240;
+  --color-surface-alt: 245 237 224;
+  --color-surface-raised: 255 255 255;
+  --color-border: 224 213 196;
+  --color-border-subtle: 235 227 214;
+  --color-text: 61 46 31;
+  --color-text-secondary: 122 107 90;
+  --color-text-muted: 169 154 135;
+  --color-primary: 160 82 45;
+  --color-primary-hover: 139 71 38;
+  --color-ring: 196 131 90;
+  --color-danger: 166 61 47;
+  --color-danger-bg: 245 213 207;
+
+  --color-marker-give: #6B7F3A;
+  --color-marker-need: #C4873A;
+  --color-marker-lend: #C97A5C;
+  --color-marker-event: #8B4F6A;
+  --color-marker-test: #9C9083;
+
+  --color-badge-give-bg: 232 237 200;
+  --color-badge-give-text: 62 79 26;
+  --color-badge-need-bg: 245 224 196;
+  --color-badge-need-text: 122 78 26;
+  --color-badge-lend-bg: 242 217 206;
+  --color-badge-lend-text: 107 58 40;
+  --color-badge-event-bg: 232 212 222;
+  --color-badge-event-text: 92 46 66;
+  --color-badge-test-bg: 229 223 216;
+  --color-badge-test-text: 74 66 57;
+
+  --color-huesca-border: #A0522D;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: 28 22 18;
+    --color-surface-alt: 42 34 27;
+    --color-surface-raised: 51 42 34;
+    --color-border: 74 63 51;
+    --color-border-subtle: 61 52 40;
+    --color-text: 240 232 221;
+    --color-text-secondary: 191 176 158;
+    --color-text-muted: 138 125 110;
+    --color-primary: 196 131 90;
+    --color-primary-hover: 212 149 108;
+    --color-ring: 196 131 90;
+    --color-danger: 212 105 90;
+    --color-danger-bg: 61 36 32;
+
+    --color-marker-give: #8CA04F;
+    --color-marker-need: #D4A04F;
+    --color-marker-lend: #D4937A;
+    --color-marker-event: #A8698A;
+    --color-marker-test: #ADA295;
+
+    --color-badge-give-bg: 46 53 32;
+    --color-badge-give-text: 184 204 128;
+    --color-badge-need-bg: 61 47 26;
+    --color-badge-need-text: 212 184 128;
+    --color-badge-lend-bg: 61 42 34;
+    --color-badge-lend-text: 212 168 148;
+    --color-badge-event-bg: 61 34 51;
+    --color-badge-event-text: 212 160 192;
+    --color-badge-test-bg: 51 46 40;
+    --color-badge-test-text: 196 186 176;
+
+    --color-huesca-border: #C4835A;
+  }
+}
+
+.dark {
+  --color-surface: 28 22 18;
+  --color-surface-alt: 42 34 27;
+  --color-surface-raised: 51 42 34;
+  --color-border: 74 63 51;
+  --color-border-subtle: 61 52 40;
+  --color-text: 240 232 221;
+  --color-text-secondary: 191 176 158;
+  --color-text-muted: 138 125 110;
+  --color-primary: 196 131 90;
+  --color-primary-hover: 212 149 108;
+  --color-ring: 196 131 90;
+  --color-danger: 212 105 90;
+  --color-danger-bg: 61 36 32;
+  --color-marker-give: #8CA04F;
+  --color-marker-need: #D4A04F;
+  --color-marker-lend: #D4937A;
+  --color-marker-event: #A8698A;
+  --color-marker-test: #ADA295;
+  --color-badge-give-bg: 46 53 32;
+  --color-badge-give-text: 184 204 128;
+  --color-badge-need-bg: 61 47 26;
+  --color-badge-need-text: 212 184 128;
+  --color-badge-lend-bg: 61 42 34;
+  --color-badge-lend-text: 212 168 148;
+  --color-badge-event-bg: 61 34 51;
+  --color-badge-event-text: 212 160 192;
+  --color-badge-test-bg: 51 46 40;
+  --color-badge-test-text: 196 186 176;
+  --color-huesca-border: #C4835A;
+}
+
+.light {
+  --color-surface: 252 248 240;
+  --color-surface-alt: 245 237 224;
+  --color-surface-raised: 255 255 255;
+  --color-border: 224 213 196;
+  --color-border-subtle: 235 227 214;
+  --color-text: 61 46 31;
+  --color-text-secondary: 122 107 90;
+  --color-text-muted: 169 154 135;
+  --color-primary: 160 82 45;
+  --color-primary-hover: 139 71 38;
+  --color-ring: 196 131 90;
+  --color-danger: 166 61 47;
+  --color-danger-bg: 245 213 207;
+  --color-marker-give: #6B7F3A;
+  --color-marker-need: #C4873A;
+  --color-marker-lend: #C97A5C;
+  --color-marker-event: #8B4F6A;
+  --color-marker-test: #9C9083;
+  --color-badge-give-bg: 232 237 200;
+  --color-badge-give-text: 62 79 26;
+  --color-badge-need-bg: 245 224 196;
+  --color-badge-need-text: 122 78 26;
+  --color-badge-lend-bg: 242 217 206;
+  --color-badge-lend-text: 107 58 40;
+  --color-badge-event-bg: 232 212 222;
+  --color-badge-event-text: 92 46 66;
+  --color-badge-test-bg: 229 223 216;
+  --color-badge-test-text: 74 66 57;
+  --color-huesca-border: #A0522D;
+}
+
+body {
+  background-color: rgb(var(--color-surface));
+  color: rgb(var(--color-text));
+}
+
+.map-marker-ring {
+  border: 3px solid rgb(var(--color-surface-raised));
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.fab-shadow {
+  box-shadow: 0 4px 14px rgb(var(--color-primary) / 0.35);
+}
+
